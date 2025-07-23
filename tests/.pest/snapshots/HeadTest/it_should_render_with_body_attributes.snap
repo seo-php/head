@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html >
+<head>
+
+</head>
+<body class="class" id="id" onafterprint="handleAfterPrint" onbeforeprint="handleBeforePrint" onbeforeunload="handleBeforeUnload" onerror="handleError" onhashchange="handleHashChange" onload="handleLoad" onmessage="handleMessage" onoffline="handleOffline" ononline="handleOnline" onpagehide="handlePageHide" onpageshow="handlePageShow" onpopstate="handlePopState" onresize="handleResize" onstorage="handleStorage" onunload="handleUnload" style="display: none;">
+
+
+
+</body>
+</html>

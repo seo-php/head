@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="content-security-policy" content="default-src 'self'; script-src 'self' 'unsafe-inline';">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<base>
+<title>title</title>
+<link href="https://example.com" rel="preconnect">
+<script async src="async-script.js"></script>
+<style>@import "imported.css"</style>
+<script src="sync-script.js"></script>
+<style>.sync-style { color: red }</style>
+<link href="sync-styles.css" rel="stylesheet">
+<link href="modulepreload.js" rel="modulepreload">
+<link href="preload.js" rel="preload">
+<script defer src="defer-script.js"></script>
+<link href="https://example.com" rel="dns-prefetch">
+<link href="https://example.com" rel="prefetch">
+<link href="https://example.com" rel="prerender">
+<meta name="description" content="description">
+</head>
+<body >
+
+
+
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="content-security-policy" content="default-src 'self'; script-src 'self' 'unsafe-inline';">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<base href="https://example.com/">
+<title>Duped Title</title>
+<link href="duped-style.css" id="style-id" rel="stylesheet">
+<link href="https://example.com/canonical" rel="canonical">
+<meta name="description" content="Duped Description">
+</head>
+<body >
+
+
+
+</body>
+</html>
