@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html >
+<head>
+<link as="style" blocking="render" color="blue" crossorigin="anonymous" fetchpriority="high" href="style.css" hreflang="en" id="stylesheet-id" imagesizes="100vw" imagesrcset="image-1x.jpg 1x, image-2x.jpg 2x" integrity="sha384-oqVuAfXRKap7fdgcCY5uykM6+R9Gh7k5Q5h1QZ6jIW3k5k5k5k5k5k5k5k5k5k5k5" media="screen and (min-width: 600px)" nonce="random-nonce" onabort="handleAbort" onerror="handleError" onload="handleLoad" onloadstart="handleLoadStart" onprogress="handleProgress" prefetch="true" referrerpolicy="no-referrer" rel="stylesheet" sizes="50vw" title="Main Stylesheet" type="text/css">
+</head>
+<body >
+
+
+
+</body>
+</html>

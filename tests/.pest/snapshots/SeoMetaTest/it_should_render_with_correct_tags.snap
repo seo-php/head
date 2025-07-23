@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SEO Meta Example</title>
+<meta name="apple-itunes-app" content="app-id=1234567890, app-argument=https://example.com">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Example App">
+<meta name="application-name" content="Example App" lang="en">
+<meta property="article:author" content="John Doe">
+<meta property="article:expiration_time" content="1996-04-01T09:00:00+00:00">
+<meta property="article:modified_time" content="1996-04-01T09:00:00+00:00">
+<meta property="article:published_time" content="1996-04-01T09:00:00+00:00">
+<meta property="article:section" content="Technology">
+<meta property="article:tag" content="SEO">
+<meta name="author" content="John Doe">
+<meta property="book:author" content="John Doe">
+<meta property="book:isbn" content="978-3-16-148410-0">
+<meta property="book:release_date" content="1996-04-01T09:00:00+00:00">
+<meta property="book:tag" content="SEO">
+<link href="https://example.com" rel="canonical">
+<meta name="color-scheme" content="light dark">
+<meta name="content-security-policy" content="base-uri https://example.com; child-src 'none'; connect-src 'none'; default-src 'none'; font-src 'none'; form-action 'none'; frame-ancestors 'none'; img-src 'none'; manifest-src 'none'; media-src 'none'; object-src 'none'; prefetch-src 'none'; report-to 'none'; report-uri 'none'; require-sri-for 'none'; require-trusted-types-for 'none'; sandbox 'none'; script-src 'none'; script-src-attr 'none'; script-src-elem 'none'; style-src 'none'; style-src-attr 'none'; style-src-elem 'none'; trusted-types 'none'; upgrade-insecure-requests 'none'; worker-src 'none'">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta name="creator" content="Jane Smith">
+<meta http-equiv="default-style" content="main">
+<meta name="description" content="This is an example description.">
+<meta property="fb:app_id" content="9876543210">
+<meta name="format-detection" content="telephone=no">
+<meta name="generator" content="php-head">
+<meta name="google" content="notranslate">
+<meta name="googlebot" content="index,follow">
+<meta name="google-site-verification" content="google-site-verification-code">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="msapplication-Config" content="config.xml">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="tile.png">
+<meta property="og:audio" content="audio.mp3">
+<meta property="og:audio:secure_url" content="https://secure.example.com/audio.mp3">
+<meta property="og:audio:type" content="audio/mpeg">
+<meta property="og:description" content="Open Graph description">
+<meta property="og:determiner" content="the">
+<meta property="og:image" content="image.jpg">
+<meta property="og:image:alt" content="Alt text">
+<meta property="og:image:height" content="600">
+<meta property="og:image:secure_url" content="https://secure.example.com/image.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="800">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="es_ES">
+<meta property="og:site_name" content="Example Site">
+<meta property="og:title" content="Open Graph Title">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://example.com">
+<meta property="og:video" content="video.mp4">
+<meta property="og:video:alt" content="Video alt">
+<meta property="og:video:height" content="720">
+<meta property="og:video:secure_url" content="https://secure.example.com/video.mp4">
+<meta property="og:video:type" content="video/mp4">
+<meta property="og:video:width" content="1280">
+<meta property="profile:first_name" content="John">
+<meta property="profile:gender" content="male">
+<meta property="profile:last_name" content="Doe">
+<meta property="profile:username" content="johndoe">
+<meta name="publisher" content="Example Publisher">
+<meta name="rating" content="general">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="refresh" content="5; url=https://example.com/refresh">
+<meta name="robots" content="all, follow, index, indexifembedded, max-image-preview:large, max-snippet:1, max-video-preview:2, noarchive, nofollow, noimageindex, noindex, none, nositelinkssearchbox, nosnippet, notranslate, unavailable_after:1996-04-01T09:00:00+00:00">
+<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+<meta name="twitter:app:id:googleplay" content="com.example.app">
+<meta name="twitter:app:id:ipad" content="1234567890">
+<meta name="twitter:app:id:iphone" content="0987654321">
+<meta name="twitter:app:name:googleplay" content="Example App">
+<meta name="twitter:app:name:ipad" content="Example App iPad">
+<meta name="twitter:app:name:iphone" content="Example App iPhone">
+<meta name="twitter:app:url:googleplay" content="https://play.google.com/store/apps/details?id=com.example.app">
+<meta name="twitter:app:url:ipad" content="https://apps.apple.com/app/example-app-ipad">
+<meta name="twitter:app:url:iphone" content="https://apps.apple.com/app/example-app-iphone">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:creator" content="@johndoe">
+<meta name="twitter:creator:id" content="123456">
+<meta name="twitter:data1" content="Data 1">
+<meta name="twitter:data2" content="Data 2">
+<meta name="twitter:description" content="Twitter card description">
+<meta name="twitter:image" content="twitter-image.jpg">
+<meta name="twitter:image:alt" content="Twitter image alt">
+<meta name="twitter:image:height" content="400">
+<meta name="twitter:image:type" content="image/jpeg">
+<meta name="twitter:image:width" content="600">
+<meta name="twitter:label1" content="Label 1">
+<meta name="twitter:label2" content="Label 2">
+<meta name="twitter:player" content="https://player.example.com">
+<meta name="twitter:player:height" content="300">
+<meta name="twitter:player:stream" content="https://stream.example.com">
+<meta name="twitter:player:width" content="400">
+<meta name="twitter:site" content="@examplesite">
+<meta name="twitter:site:id" content="654321">
+<meta name="twitter:title" content="Twitter Card Title">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+</head>
+<body >
+
+
+
+</body>
+</html>
