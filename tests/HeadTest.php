@@ -313,3 +313,74 @@ it('should sort tags', function (): void {
 
     expect(render($head))->toMatchSnapshot();
 });
+
+it('should escape the title as html', function (): void {
+    $head = Head::create();
+
+    $head->title('Fish & Chips <3 "quoted"');
+
+    expect($head->render()['headTags'])
+        ->toContain('<title>Fish &amp; Chips &lt;3 &quot;quoted&quot;</title>')
+    ;
+});
+
+it('should keep inline script content intact', function (): void {
+    $head = Head::create();
+
+    $head->script(textContent: 'for(let i=0;i<n;i++){x()}if(a<b&&c>d){f()}');
+
+    expect($head->render()['headTags'])
+        ->toContain('<script>for(let i=0;i<n;i++){x()}if(a<b&&c>d){f()}</script>')
+    ;
+});
+
+it('should escape closing script tags and comment openers in inline scripts', function (): void {
+    $head = Head::create();
+
+    $head->script(textContent: 'var a="</script><!--"; var b="</ScRiPt>"; var c=/<!--/u;');
+
+    expect($head->render()['headTags'])
+        ->toContain('<script>var a="\\x3C/script>\\x3C!--"; var b="\\x3C/ScRiPt>"; var c=/\\x3C!--/u;</script>')
+    ;
+});
+
+it('should escape every less-than sign in json scripts', function (string $type): void {
+    $json = '{"name":"A <b>bold</b> co</script><!--"}';
+
+    $head = Head::create();
+
+    $head->script(textContent: $json, type: $type);
+
+    $escaped = '{"name":"A \\u003Cb>bold\\u003C/b> co\\u003C/script>\\u003C!--"}';
+
+    expect($head->render()['headTags'])
+        ->toContain(">{$escaped}</script>")
+        ->and(json_decode($escaped, true))->toBe(json_decode($json, true))
+    ;
+})->with([
+    'application/ld+json',
+    'application/json',
+    'Application/JSON',
+    'importmap',
+    'speculationrules',
+]);
+
+it('should escape closing style tags in inline styles', function (): void {
+    $head = Head::create();
+
+    $head->style(textContent: 'a::after { content: "</STYLE>" } a > b { color: red }');
+
+    expect($head->render()['headTags'])
+        ->toContain('<style>a::after { content: "<\\/STYLE>" } a > b { color: red }</style>')
+    ;
+});
+
+it('should keep html inside noscript and escape closing noscript tags', function (): void {
+    $head = Head::create();
+
+    $head->noscript(textContent: '<style>.js-only { display: none; }</style></noscript>');
+
+    expect($head->render()['headTags'])
+        ->toContain('<noscript><style>.js-only { display: none; }</style><\\/noscript></noscript>')
+    ;
+});

@@ -569,7 +569,7 @@ final class Head
         }
 
         $content = in_array($tag->type, self::TAGS_WITH_INNER_CONTENT)
-            ? strip_tags($tag->textContent ?? '')
+            ? $this->renderTextContent($tag)
             : '';
 
         return $openTag.$content."</{$tag->type}>";
@@ -594,5 +594,25 @@ final class Head
         );
 
         return implode(' ', $attributes);
+    }
+
+    private function renderTextContent(HeadTag $tag): string
+    {
+        $content = $tag->textContent ?? '';
+
+        return match ($tag->type) {
+            'title' => htmlspecialchars($content, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'),
+            'script' => $this->isJsonScript($tag)
+                ? str_replace('<', '\\u003C', $content)
+                : (string) preg_replace('~<(/script|!--)~i', '\\x3C$1', $content),
+            default => (string) preg_replace('~</('.preg_quote($tag->type, '~').')~i', '<\\/$1', $content),
+        };
+    }
+
+    private function isJsonScript(HeadTag $tag): bool
+    {
+        $type = strtolower(trim($tag->string('type')));
+
+        return str_ends_with($type, 'json') || in_array($type, ['importmap', 'speculationrules'], true);
     }
 }
