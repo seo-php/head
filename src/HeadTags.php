@@ -46,17 +46,11 @@ final class HeadTags implements IteratorAggregate
     public function deduped(): self
     {
         $deduped = [];
-        $deduping = [];
-        foreach ($this->tags as $tag) {
-            $dedupeKey = $tag->dedupeKey();
-            if ($dedupeKey !== null) {
-                $deduping[$dedupeKey] = $tag;
-            } else {
-                $deduped[] = $tag;
-            }
+        foreach ($this->tags as $index => $tag) {
+            $deduped[$tag->dedupeKey() ?? $index] = $tag;
         }
 
-        return new self(array_merge($deduped, array_values($deduping)));
+        return new self(array_values($deduped));
     }
 
     public function sorted(): self

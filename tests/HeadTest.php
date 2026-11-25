@@ -4,7 +4,10 @@ declare(strict_types=1);
 
 namespace Seo\Head\Tests;
 
+use Seo\Head\Context\TagsResolvingContext;
 use Seo\Head\Head;
+use Seo\Head\HeadTag;
+use Seo\Head\HeadTagPosition;
 
 it('should render', function (): void {
     $head = Head::create();
@@ -382,5 +385,109 @@ it('should keep html inside noscript and escape closing noscript tags', function
 
     expect($head->render()['headTags'])
         ->toContain('<noscript><style>.js-only { display: none; }</style><\\/noscript></noscript>')
+    ;
+});
+
+it('should use the tag priority instead of the computed weight', function (): void {
+    $head = Head::create();
+
+    $head->meta(charset: 'utf-8');
+    $head->title('title');
+
+    $head->onTagsResolving(function (TagsResolvingContext $context): void {
+        $context->tags->add(new HeadTag(
+            type: 'script',
+            attributes: ['src' => 'first.js'],
+            textContent: null,
+            position: HeadTagPosition::Head,
+            priority: -100,
+        ));
+    });
+
+    expect($head->render(omitLineBreaks: true)['headTags'])
+        ->toBe('<script src="first.js"></script><meta charset="utf-8"><title>title</title>')
+    ;
+});
+
+it('should keep the insertion order of tags with the same priority', function (): void {
+    $head = Head::create();
+
+    $head->onTagsResolving(function (TagsResolvingContext $context): void {
+        $context->tags->add(new HeadTag(
+            type: 'script',
+            attributes: ['type' => 'text/plain', 'data-src' => 'lib.js'],
+            textContent: null,
+            position: HeadTagPosition::Head,
+            priority: 50,
+        ));
+
+        $context->tags->add(new HeadTag(
+            type: 'script',
+            attributes: ['type' => 'text/plain'],
+            textContent: 'Lib.init()',
+            position: HeadTagPosition::Head,
+            priority: 50,
+        ));
+    });
+
+    expect($head->render(omitLineBreaks: true)['headTags'])
+        ->toBe('<script type="text/plain" data-src="lib.js"></script><script type="text/plain">Lib.init()</script>')
+    ;
+});
+
+it('should keep the priority when cloning a tag', function (): void {
+    $tag = new HeadTag(
+        type: 'script',
+        attributes: [],
+        textContent: null,
+        position: HeadTagPosition::Head,
+        priority: 5,
+    );
+
+    expect($tag->cloned()->priority)->toBe(5);
+});
+
+it('should keep the priority of the last duplicated tag', function (): void {
+    $head = Head::create();
+
+    $head->meta(charset: 'utf-8');
+
+    $head->onTagsResolving(function (TagsResolvingContext $context): void {
+        $context->tags->add(new HeadTag(
+            type: 'script',
+            attributes: ['id' => 'lib', 'src' => 'first.js'],
+            textContent: null,
+            position: HeadTagPosition::Head,
+            priority: -100,
+        ));
+
+        $context->tags->add(new HeadTag(
+            type: 'script',
+            attributes: ['id' => 'lib', 'src' => 'second.js'],
+            textContent: null,
+            position: HeadTagPosition::Head,
+        ));
+    });
+
+    expect($head->render(omitLineBreaks: true)['headTags'])
+        ->toBe('<meta charset="utf-8"><script id="lib" src="second.js"></script>')
+    ;
+});
+
+it('should keep the insertion order of tags with and without a dedupe key', function (): void {
+    $head = Head::create();
+
+    $head->script(id: 'lib', src: 'lib.js');
+    $head->script(textContent: 'Lib.init()');
+
+    $head->meta(name: 'description', content: 'description');
+    $head->meta(name: 'author', content: 'author');
+    $head->meta(name: 'description', content: 'duped description');
+
+    expect($head->render(omitLineBreaks: true)['headTags'])
+        ->toBe(
+            '<script id="lib" src="lib.js"></script><script>Lib.init()</script>'
+            .'<meta name="description" content="duped description"><meta name="author" content="author">',
+        )
     ;
 });

@@ -18,6 +18,7 @@ final class HeadTag
         public array $attributes,
         public ?string $textContent,
         public HeadTagPosition $position,
+        public ?int $priority = null,
     ) {}
 
     public function attribute(string $key): bool | string | null
@@ -87,6 +88,10 @@ final class HeadTag
 
     public function weight(): int
     {
+        if ($this->priority !== null) {
+            return $this->priority;
+        }
+
         if ($this->type === 'base') {
             return -10;
         }
@@ -168,6 +173,7 @@ final class HeadTag
             attributes: $this->attributes,
             textContent: $this->textContent,
             position: $this->position,
+            priority: $this->priority,
         );
     }
 }
